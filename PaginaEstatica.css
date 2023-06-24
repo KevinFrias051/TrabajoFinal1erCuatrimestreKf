@@ -1,3 +1,37 @@
-/* body{
-    background-color: #332B47;
-} */
+body {
+    /* background-color: #332B47; */
+    margin: auto;
+    width: 1000px;
+}
+
+.hiperVinculo {
+    text-decoration: none;
+    color: black;
+}
+
+.carousel-inner h5{
+    font-size: 200%;
+    color: red;
+    
+}
+
+.carousel-inner p {
+    font-size: 150%;
+    color: black;
+}
+
+#Empresa {
+    margin: 30px;
+}
+
+.formulario {
+    margin: 30px;
+}
+
+.contacto {
+    margin: 30px;
+}
+
+.btnSend {
+    margin-bottom: 10px;
+}
