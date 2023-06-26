@@ -1,0 +1,11 @@
+.corrected {
+  margin: 15px;
+}
+
+.terminado {
+  background-color: skyblue;
+  background-size: auto;
+  background-repeat: no-repeat;
+  width: max-content;
+  text-decoration: line-through;
+}
