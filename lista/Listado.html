@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajo Final Primer Cuatrimestre Parte 2</title>
-
-    <link rel="stylesheet" href="Listado.css">
+    <title>Trabajo Final Primer Cuatrimestre</title>
+    
+    <link rel="stylesheet" href="./parte2.css">
 </head>
 
 <body>
@@ -16,11 +16,26 @@
         <button class="agregar" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
 
     </div>
-    <div class="div-contenedor" id="contenedor">
-
+    <div class="divContenedor" id="contenedor">
+        <div id="tarea0" class="tarea verde">
+            <p id="idTitulo">tarea0</p>
+            <div id="divCuerpo">
+                <p id="textoTarea">tarea</p>
+                <div id="divBotones">
+                    <button id="0" type="button" class="botonEliminar"
+                        onclick="eliminarTarea(0)">eliminarTarea</button>
+                    <div>
+                        <select name="estado" id="idEstado">
+                            <option value="pendiente" selected>pendiente</option>
+                            <option value="completada">completado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script type="text/javascript" src="./Listado.js"></script>
+    <script type="text/javascript" src="./parte2.js"></script>
 </body>
 
 </html>
