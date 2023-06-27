@@ -1,45 +1,26 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trabajo final Parte 2</title>
-  <link rel="stylesheet" href="Listado.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo Final Primer Cuatrimestre Parte 2</title>
+
+    <link rel="stylesheet" href="Listado.css">
 </head>
 
 <body>
+    <div>
+        <input type="text" id="tituloTarea" placeholder="Titulo de la tarea">
+        <input type="text" id="cuerpoTarea" placeholder="Tarea">
+        <button class="agregar" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
 
-  <form id="formulario">
-    <h1>lista de tareas</h1>
-    <input id="form" />
-    <button id="btnAdd" type="button">Añadir Tarea</button>
-    <button id="btnDell" type="button">Eliminar Tareas</button>
-    <div class="custom-select" style="width:200px;" id="importancia">
-      <select>
-        <option value="1">Nada importante</option>
-        <option value="2">inportante</option>
-        <option value="3">muy Inportante</option>
-      </select>
     </div>
-  </form>
-  <ul id="lista">
-    <li>
+    <div class="div-contenedor" id="contenedor">
 
-      <input type="checkbox" id="id" class="corrected">
-      primera tarea
-      
-      <input type="checkbox" id="eliminar" class="visible">
-    </li>
-   <!--  <li>
-      segunda tarea
-      <input type="checkbox" id="id" class="corrected">
-      <input type="checkbox" id="eliminar" class="visible">
-    </li> -->
-  </ul>
+    </div>
 
-  <script src="Listado.js"></script>
+    <script type="text/javascript" src="./Listado.js"></script>
 </body>
 
 </html>
