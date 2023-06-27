@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trabajo Final Primer Cuatrimestre</title>
     
-    <link rel="stylesheet" href="./parte2.css">
+    <link rel="stylesheet" href="./Listado.css">
 </head>
 
 <body>
@@ -36,6 +36,55 @@
     </div>
 
     <script type="text/javascript" src="./parte2.js"></script>
+</body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabajo Final Primer Cuatrimestre</title>
+
+    <link rel="stylesheet" href="./parte2.css">
+</head>
+
+<body>
+    <div>
+        <input type="text" id="tituloTarea" placeholder="Titulo de la tarea">
+        <input type="text" id="cuerpoTarea" placeholder="Tarea">
+        <button class="agregar" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
+        <div>
+            color:
+            <select id="idColor" onchange="setColor()">
+                <option value="red" selected>red</option>
+                <option value="green">green</option>
+                <option value="blue">blue</option>
+                <option value="yellow">yellow</option>
+                <option value="pink">pink</option>
+            </select>
+        </div>
+    </div>
+    <div class="divContenedor" id="contenedor">
+        
+        <div id="tarea0" class="tarea verde">
+            <p id="idTitulo">tarea0</p>
+            <div id="divCuerpo">
+                <p id="textoTarea">tarea</p>
+                <div id="divBotones">
+                    <button id="0" type="button" class="botonEliminar" onclick="eliminarTarea(0)">eliminarTarea</button>
+                    <div>
+                        <select name="estado" id="idEstado">
+                            <option value="pendiente" selected>pendiente</option>
+                            <option value="completada">completado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./Listado.html"></script>
 </body>
 
 </html>

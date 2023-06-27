@@ -6,7 +6,6 @@ btnAgregarTarea.addEventListener('click', function (e) {
 })
 
 
-
 function agregarTarea() {
     const contenedor = document.getElementById("contenedor");
     const agregarTitulo = document.getElementById("tituloTarea");
@@ -14,13 +13,18 @@ function agregarTarea() {
 
 
     const divtarea = document.createElement("div");
-    divtarea.id = 'tarea' + eval(contador);
-    divtarea.className = "tarea";//de aca cambio la clase del div
+    divtarea.id = 'tarea ' + eval(contador);
+
+
+    divtarea.className = 'tarea';//de aca cambio la clase del div
+    divtarea.classList.add(setColor())
 
     const divCuerpo = document.createElement("div");//div del cuer
     divCuerpo.id = "divCuerpo" + eval(contador);
     const divBotones = document.createElement("div");//div de los botones
     divBotones.id = "divBotones" + eval(contador);
+    divBotones.className = 'claseBotones';
+    divBotones.classList.add(setColor())
     /* crea y asigna el titulo de la tares*/
     const titulo = document.createElement("p");
     titulo.id = "idTitulo" + eval(contador);
@@ -37,6 +41,7 @@ function agregarTarea() {
     console.log('btnDel.id:' + eval(contador))
     btnDel.type = 'button';
     btnDel.className = "botonEliminar";
+
     btnDel.textContent = 'Eliminar Tarea';
     btnDel.onclick = function () {
         const idBoton = obtenerIdBoton(this);
@@ -76,4 +81,10 @@ function eliminarTarea(idBoton) {
     const divContenedor = document.getElementById('contenedor');
     const tarea = document.getElementById('tarea' + idBoton);
     divContenedor.removeChild(tarea);
+}
+
+function setColor() {
+    const color = document.getElementById('idColor').value;
+    console.log('el color seleccionado es ' + color);
+    return color;
 }
