@@ -1,3 +1,9 @@
+//Crea la primera tarea vacia
+document.addEventListener('DOMContentLoaded', function () {
+    btnAgregarTarea.click();
+});
+
+//crea un contador para crear id's personalizadors
 let contador = 0;
 const btnAgregarTarea = document.getElementById("btnAgregarTarea");
 btnAgregarTarea.addEventListener('click', function (e) {
@@ -11,66 +17,101 @@ function agregarTarea() {
     const agregarTitulo = document.getElementById("tituloTarea");
     const agegarCuerpo = document.getElementById("cuerpoTarea");
 
-
+    //crea el div tarea
     const divtarea = document.createElement("div");
-    divtarea.id = 'tarea ' + eval(contador);
-
-
-    divtarea.className = 'tarea';//de aca cambio la clase del div
+    divtarea.id = 'tarea' + eval(contador);
+    divtarea.className = 'tarea';
     divtarea.classList.add(setColor())
-
-    const divCuerpo = document.createElement("div");//div del cuer
-    divCuerpo.id = "divCuerpo" + eval(contador);
-    const divBotones = document.createElement("div");//div de los botones
-    divBotones.id = "divBotones" + eval(contador);
-    divBotones.className = 'claseBotones';
-    divBotones.classList.add(setColor())
+    ////
+    //crea el div titulo
+    const divTitulo = document.createElement('div');
+    divTitulo.id = "idDivTitulo";// + eval(contador);
+    divTitulo.classList='divTitulo';
+    divTitulo.classList.add(setColor());
     /* crea y asigna el titulo de la tares*/
     const titulo = document.createElement("p");
-    titulo.id = "idTitulo" + eval(contador);
-    titulo.style = "tituloTarea";
+    titulo.id = "idTitulo";// + eval(contador);
+    titulo.classList= "tituloTarea";
+    titulo.classList.add(setColor());
     titulo.innerText = agregarTitulo.value;
+
+    ////
+    //crea el div del cuerpo
+    const divCuerpo = document.createElement("div");
+    divCuerpo.id = "divCuerpo";// + eval(contador);
+    divCuerpo.classList="divCuerpo";
+
+    divCuerpo.classList.add(setColor());
     /* crea el texto de la tarea*/
     const textoTarea = document.createElement("p");
     textoTarea.id = "idTarea";
-    textoTarea.style = "textoTarea"
+    textoTarea.classList = 'textoTarea';
+    textoTarea.classList.add(setColor());
     textoTarea.innerText = agegarCuerpo.value;
+    //div de los botones
+    const divBotones = document.createElement("div");
+                //divBotones.id = "divBotones" + eval(contador);
+    divBotones.className = 'divBotones';
+    divBotones.classList.add(setColor());
+    //
     /* creo el boton para eliminar */
     var btnDel = document.createElement('button');
     btnDel.id = eval(contador);
     console.log('btnDel.id:' + eval(contador))
     btnDel.type = 'button';
     btnDel.className = "botonEliminar";
-
     btnDel.textContent = 'Eliminar Tarea';
     btnDel.onclick = function () {
         const idBoton = obtenerIdBoton(this);
         eliminarTarea(idBoton);
     }
-    /* agrega estado */
 
+    //crea el div para el selector de estado
+    const divSelectorEstado=document.createElement('div');
+    divSelectorEstado.className='divSelectorEstados';
+    divSelectorEstado.classList.add(setColor());
+    //crea el selector de estado de la tarea
     const selectEstado = document.createElement('select');
-    const opcionPendiente = document.createElement('option');
-    opcionPendiente.value = 'pendiente';
-    opcionPendiente.text = 'Pendiente';
+    selectEstado.className="botonSelecEstado"
 
+
+                            /* ACA AGREGAR PARA CAMBIAR ESTILOS CUANDO ESTA FINALIZADO */
+    //crea estado "pendiente" y lo asigna al selector
+    const opcionPendiente = document.createElement('option');
+    opcionPendiente.value ='pendiente';
+    opcionPendiente.text = 'Pendiente';
     selectEstado.appendChild(opcionPendiente);
+
+    //crea estado "finalizado" y lo asigna al selector
     const opcionFinalizado = document.createElement('option');
     opcionFinalizado.value = 'finalizado';
     opcionFinalizado.text = 'Finalizado';
-
     selectEstado.appendChild(opcionFinalizado);
-    divBotones.appendChild(selectEstado);
+
+    //acomoda 
+
+/**/ contenedor.appendChild(divtarea);
+/**/   divtarea.appendChild(divTitulo);
+/**/      divTitulo.appendChild(titulo);
+/**/   divtarea.appendChild(divCuerpo);
+/**/      divCuerpo.appendChild(textoTarea);
+/**/   divtarea.appendChild(divBotones);
+/**/         divBotones.appendChild(btnDel);
+/**/         divBotones.appendChild(divSelectorEstado)            
+/**/            divSelectorEstado.appendChild(selectEstado);
 
 
-    divBotones.appendChild(btnDel);
-    divtarea.appendChild(titulo);
-    divtarea.appendChild(divCuerpo);
-    divCuerpo.appendChild(textoTarea);
-    divCuerpo.appendChild(divBotones);
-    contenedor.appendChild(divtarea);
+    ////////////////////////
+    //prueba para editar
+   /*  textoTarea.innerText = 'hola esto es una tarea hola esto es una tareahola esto es una tareahola esto es una tareahola esto es una tareahola esto es una tarea'
+    titulo.innerText = 'Este es el titulo de una tarea'; */
+
+    /////////////////////////////
+
 
 }
+
+///////////////////////
 function obtenerIdBoton(boton) {
     idBoton = boton.id;
     console.log('tarea:' + idBoton);
@@ -80,6 +121,7 @@ function obtenerIdBoton(boton) {
 function eliminarTarea(idBoton) {
     const divContenedor = document.getElementById('contenedor');
     const tarea = document.getElementById('tarea' + idBoton);
+    console.log('tarea eliminar:', tarea)
     divContenedor.removeChild(tarea);
 }
 

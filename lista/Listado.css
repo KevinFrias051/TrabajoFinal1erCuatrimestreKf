@@ -1,10 +1,13 @@
-*{
+* {
   background-color: #c5c6c8;
+
 }
+
 .divContenedor {
   display: flex;
-   flex-wrap: wrap;
-justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+
   min-width: 460px;
   margin: 30px;
   border: 2px solid rgb(0, 0, 0);
@@ -12,23 +15,98 @@ justify-content: center;
 }
 
 .tarea {
+  display: flex;
   text-align: center;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 35px;
+  vertical-align: text-bottom;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
-  min-width: 400px;
-  height: 400px;
-  margin: 30px;
-  border: 2px solid rgb(0, 0, 0);
+  width: 400px;
+  min-height: 400px;
+  margin: 20px;
+  box-shadow: 8px 5px 5px;
+  ;
+  flex-direction: column;
 }
 
-.boton-eliminar {
+/* DIV  TITULO TAREA */
+.divTitulo {
+  display: inline-block;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 30px;
+  border: 1px solid black;
+  min-height: 20px;
+  padding: 5px;
+  margin: 5px;
+
+
+}
+
+/* TEXTO DE TITULO TAREA */
+.tituloTarea {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 2px;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 25px;
+  font-size: 30px;
+}
+
+/* DIV CUERPO TAREA*/
+.divCuerpo {
+  flex-direction: row;
+  justify-content: center;
+  flex-grow: 1;
+  border: 1px solid black;
+  min-height: 300;
+
+  padding: 5px;
+  margin: 5px;
+}
+
+
+/* DIV BOTONES */
+.divBotones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+}
+
+
+
+
+
+.textoTarea {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 2px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+
+.botonEliminar {
+  align-content: space-around;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
   font-weight: bold;
   width: auto;
-  height: 40px;
+  height: auto;
 }
+
+.botonSelecEstado {
+  align-content: space-around;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  font-weight: bold;
+  width: auto;
+  height: 30px;
+}
+
+
+
 
 .red {
   background-color: #ff6961;
@@ -43,7 +121,7 @@ justify-content: center;
 }
 
 .yellow {
-  background-color:#fdfd96;
+  background-color: #fdfd96;
 }
 
 .pink {
