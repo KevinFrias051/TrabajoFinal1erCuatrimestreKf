@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div class="container border">
+    <div class="container border ">
         <div class="encabezado img-fluid" id="Inicio">
             <img src="Imagenes/Logos/LogoApaizadoCortado.jpg" alt="" srcset="" class="img-fluid">
         </div>
@@ -125,7 +125,7 @@
                 </div>
 
             </div>
-            <div class= "quienesSomos border" id="quienesSomos">
+            <div class="quienesSomos border" id="quienesSomos">
                 <h4>Quienes somos?</h4>
                 <p>TCT es una destacada empresa de servicios informáticos con más de 15 años de experiencia en el
                     mercado. <br>
@@ -142,56 +142,83 @@
 
             </div>
             <div class="formulario border" id="Formulario">
+
+
+
                 <h4 class="d-flex justify-content-center"> Recibí Asesoramiento Personalizado</h4>
                 <br>
-                <form class="row g-2 d-flex justify-content-center">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="inputName" class="form-label">Nombre Y Apellido</label>
-                            <input type="text" class="formImput form-control" id="inputName" placeholder="">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="inputEmail" class="form-label ">Email</label>
-                            <input type="email" class="formImput form-control " id="inputEmail" placeholder="ejemplo@gmail.com">
-                        </div>
-                        <div class="col-md-3">
-                            <label for="inputCell" class="form-label">Telefono</label>
-                            <input type="tel" class="formImput form-control" id="imputCell" placeholder="2284-123456">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <label for="inputCiudad" class="form-label">Ciudad</label>
-                            <input type="text" class="formImput form-control" id="inputCiudad">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="inputZip" class="form-label">C.P.</label>
-                            <input type="text" class="formImput form-control" id="inputZip">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mb-4">
-                            <label for="mensaje" class="form-label">Mensaje:</label>
-                            <textarea class="formImput form-control" id="inputMensaje" rows="3"></textarea>
-                        </div>
-                        <div class="col-12 btnSend">
-                            <button type="button" class="btn btn-primary" id="btnSend"
-                                onclick="SendInfo()">Enviar</button>
-                        </div>
-                    </div>
+                <div class="contenedorForm imt">
+                    <form class="row g-3 justify-content-center needs-validation" novalidate>
+                        <div class="col ">
+                            <div class="row my-3 d-flex justify-content-center">
+                                <div class="col-md-6 ">
+                                    <label class="form-label">Nombre:</label>
+                                    <input id="nombre" class="form-control formImput" type="text" />
+                                    <small id="error-nombre" class="mensaje-error formImput"></small>
+                                </div>
 
-                </form>
-            </div>
-            <br>
+                                <div class="col-md-6 ">
+                                    <label class="form-label">Apellido:</label>
+                                    <input id="apellido" class="form-control formImput" type="text" />
+                                    <small id="error-apellido" class="mensaje-error formImput"></small>
+                                </div>
 
-            <div class="contacto border" id="Contacto">
-                <h4>Contactanos!</h4>
-                <p>Email: <a href="mailto:TheCenterTechnology@gmail.com"
-                        class="hiperVinculo">TheCenterTechnology@gmail.com</a></p>
-                <p>Telefono: (02284)-123456 </p>
-                <p>Direccion: Necochea 4550, Olavarria - Pcia Bs As. </p>
+                            </div>
+                            <div class="row my-3 d-flex justify-content-center">
+                                <div class="col-md-8">
+                                    <label for="inputEmail" class="form-label ">Email</label>
+                                    <label class="form-label">Email:</label>
+                                    <input id="email" class="form-control formImput" type="email"
+                                        placeholder="ejemplo@gmail.com" />
+                                    <small id="error-email" class="mensaje-error formImput"></small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputCell" class="form-label">Telefono</label>
+                                    <input type="tel" class="formImput form-control" id="imputCell"
+                                        placeholder="2284-123456">
+                                    <div class="invalid-feedback">Complete los datos</div>
+                                </div>
+                            </div>
+
+                            <div class="row my-3 d-flex justify-content-center">
+                                <div class="col-lg-9">
+                                    <label for="inputCiudad" class="form-label">Ciudad</label>
+                                    <input type="text" class="formImput form-control" id="inputCiudad" >
+                                </div>
+                                <div class="col-lg-3">
+                                    <label for="inputZip" class="form-label">C.P.</label>
+                                    <input type="text" class="formImput form-control" id="inputZip" >
+                                </div>
+                            </div>
+
+                            <div class="row my-3 d-flex justify-content-center">
+                                <div class="mb-8">
+                                    <label for="mensaje" class="form-label">Mensaje:</label>
+                                    <textarea class="formImput form-control" id="mensaje" rows="3"
+                                        ></textarea>
+                                        <small id="error-mensaje" class="mensaje-error formImput"></small>
+
+
+                                </div>
+                                <div class="my-3">
+                                    <button id="enviar-btn" type="button" class="btn btn-outline-success">Enviar</button>
+                                </div>
+                            </div>
+
+                    </form>
+                </div>
             </div>
         </div>
+        <br>
+
+        <div class="contacto border" id="Contacto">
+            <h4>Contactanos!</h4>
+            <p>Email: <a href="mailto:TheCenterTechnology@gmail.com"
+                    class="hiperVinculo">TheCenterTechnology@gmail.com</a></p>
+            <p>Telefono: (02284)-123456 </p>
+            <p>Direccion: Necochea 4550, Olavarria - Pcia Bs As. </p>
+        </div>
+    </div>
     </div>
     <script type="text/javascript" src="PaginaEstatica.js"></script>
 </body>
