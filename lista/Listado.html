@@ -10,24 +10,35 @@
 </head>
 
 <body>
-    <div class="contenedorMenu">
-        <input type="text" id="tituloTarea" placeholder="Titulo de la tarea">
-        <input type="text" id="cuerpoTarea" placeholder="Tarea">
-        <button class="agregar" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
-        <div id="selectColor">
-            color:
-            <select id="idColor" onchange="setColor()">
-                <option value="red" selected>red</option>
-                <option value="green">green</option>
-                <option value="blue">blue</option>
-                <option value="yellow">yellow</option>
-                <option value="pink">pink</option>
-            </select>
+    <div id="menu" class="contenedorMenu tarea lgray">
+
+        <div id="idDivTitulo" class="divTitulo lgray">
+            <p id="idTitulo" class="tituloTarea lgray"><textarea id="tituloTarea" style="width: 95%; height: 100%;" class="textoMenu lgray" placeholder="Titulo de la tarea"></textarea>
+            </p>
+        </div>
+        <div id="divCuerpo" class="divCuerpo lgray">
+            <textarea id="cuerpoTarea"style="width: 95%; min-height: 240px;" class="lgray" placeholder="Contenido de la tarea"></textarea>
+        </div>
+        
+        <div class="divBotones lgray">
+            <div id="selectColor" class="agregar lgray ">
+                <select id="idColor" onchange="setColor()" class="lgray btnMenu"><!-- aca editar el contenedor del boton -->
+                    <option value="red"selected>red</option>
+                    <option value="green">green</option>
+                    <option value="blue">blue</option>
+                    <option value="yellow">yellow</option>
+                    <option value="pink">pink</option>
+                </select>
+            </div>
+            <div class="botonAgregar lgray">
+                <!-- aca editar el contenedor del boton -->
+                <button class="agregar lgray btnMenu" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
+            </div>
+
         </div>
     </div>
-    <!-- Aca comienza el contenedor de las tareas -->
-    <div class="divContenedor" id="contenedor">
 
+    <div class="divContenedor" id="contenedor"></div>
     <!------------------- Aca termina el contenedor de las tareas------------------------------ -->
     <script src="https://kit.fontawesome.com/38f35d14bb.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./Listado.js"></script>

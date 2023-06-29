@@ -1,10 +1,7 @@
-//Crea la primera tarea vacia
-document.addEventListener('DOMContentLoaded', function () {
-    btnAgregarTarea.click();
-});
-
 //crea un contador para crear id's personalizadors
 let contador = 0;
+
+
 
 const btnAgregarTarea = document.getElementById("btnAgregarTarea");
 btnAgregarTarea.addEventListener('click', function (e) {
@@ -82,6 +79,7 @@ function agregarTarea() {
     const selectEstado = document.createElement('select');
     selectEstado.id = "estadoDeTarea" + eval(contador);
     selectEstado.className = "botonSelecEstado";
+    selectEstado.classList.add(setColor());
     //////////////////////////////////////////////////////
     selectEstado.onchange = function () {
         const idBoton = obtenerIdBoton(this);
@@ -147,6 +145,7 @@ function setColor() {
     return color;
 }
 
+
 function cambiarTema(boton) {
     console.log('id manejado:', boton);
 
@@ -156,12 +155,20 @@ function cambiarTema(boton) {
     const eliminar = 'tarea';
     const idSelector = idboton.replace(eliminar, 'estadoDeTarea');
     const estado = document.getElementById(idSelector).value;
-
     if (estado === "finalizado") {
-        tarea.classList.add('.finalizado');
-        console.log('finalizado')
+        tarea.classList.add('finalizado');
+        console.log('finalizado');
+        const palabras = tarea.querySelectorAll('.textoTarea');
+        palabras.forEach(palabra => {
+            palabra.style.textDecoration = 'line-through';
+        });
     } else {
-        console.log('prendiente')
-        tarea.classList.remove('.finalizado');
+        console.log('pendiente');
+        tarea.classList.remove('finalizado');
+        const palabras = tarea.querySelectorAll('.textoTarea');
+        palabras.forEach(palabra => {
+            palabra.style.textDecoration = 'none';
+        });
     }
 }
+
