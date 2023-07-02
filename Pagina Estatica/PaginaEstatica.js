@@ -1,180 +1,208 @@
-const esEmailValido = (email) => {
-    const emailRegex = new RegExp(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/, "gm");
-    return emailRegex.test(email)
-}
+//crea un contador para crear id's personalizadors
+let contador = 0;
 
-const validarNombre = () => {
-    const nombreInput = document.getElementById('nombre');
-    if (nombreInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-nombre').innerHTML = "El nombre es requerido";
-        nombreInput.classList.add('is-invalid');
-    } else if (nombreInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-nombre').innerHTML = "El nombre debe tener al menos 5 caracteres";
-        nombreInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-nombre').innerHTML = "";
-        nombreInput.classList.remove('is-invalid');
+
+
+const btnAgregarTarea = document.getElementById("btnAgregarTarea");
+btnAgregarTarea.addEventListener('click', function (e) {
+    contador++;
+    console.log('contador: ' + contador);
+})
+
+
+function agregarTarea() {
+    const contenedor = document.getElementById("contenedor");
+    const agregarTitulo = document.getElementById("tituloTarea");
+    const agegarCuerpo = document.getElementById("cuerpoTarea");
+
+    //crea el div tarea
+    const divtarea = document.createElement("div");
+    divtarea.id = 'tarea' + eval(contador);
+    divtarea.className = 'tarea';
+    divtarea.classList.add(setColor())
+    ////
+    //crea el div titulo
+    const divTitulo = document.createElement('div');
+    divTitulo.id = "idDivTitulo";// + eval(contador);
+    divTitulo.classList = 'divTitulo';
+    divTitulo.classList.add(setColor());
+    /* crea y asigna el titulo de la tares*/
+    const titulo = document.createElement("p");
+    titulo.id = "idTitulo";// + eval(contador);
+    titulo.classList = "tituloTarea";
+    titulo.classList.add(setColor());
+    titulo.innerText = agregarTitulo.value;
+
+    ////
+    //crea el div del cuerpo
+    const divCuerpo = document.createElement("div");
+    divCuerpo.id = "divCuerpo";// + eval(contador);
+    divCuerpo.classList = "divCuerpo";
+
+    divCuerpo.classList.add(setColor());
+    /* crea el texto de la tarea*/
+    const textoTarea = document.createElement("p");
+    textoTarea.id = "idTarea";
+    textoTarea.classList = 'textoTarea';
+    textoTarea.classList.add(setColor());
+    textoTarea.innerText = agegarCuerpo.value;
+    //div de los botones
+    const divBotones = document.createElement("div");
+    //divBotones.id = "divBotones" + eval(contador);
+    divBotones.className = 'divBotones';
+    divBotones.classList.add(setColor());
+    //
+    /* creo el boton para eliminar */
+    var btnDel = document.createElement('button');
+    const trashIcono = document.createElement("i");//crea el icono   
+    trashIcono.className = "fa-solid fa-trash fa-lg";//tipo de icono
+    trashIcono.style.color = '#4d4d4d';
+
+    btnDel.id = eval(contador);
+    console.log('btnDel.id:' + eval(contador))
+    btnDel.type = 'button';
+    btnDel.className = "botonEliminar";
+    btnDel.classList.add(setColor());
+    //btnDel.textContent = 'Eliminar Tarea';
+    btnDel.onclick = function () {
+        const idBoton = obtenerIdBoton(this);
+        eliminarTarea(idBoton);
     }
-}
+    ///////////////////////////////////////////////////////////////////////
+    //crea el div para el selector de estado
+    const divSelectorEstado = document.createElement('div');
+    divSelectorEstado.className = 'divSelectorEstados';
+    divSelectorEstado.classList.add(setColor());
+    //crea el selector de estado de la tarea
 
-const validarApellido = () => {
-    const apellidoInput = document.getElementById('apellido');
-    if (apellidoInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-apellido').innerHTML = "El apellido es requerido";
-        apellidoInput.classList.add('is-invalid');
-    } else if (apellidoInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-apellido').innerHTML = "El apellido debe tener al menos 5 caracteres";
-        apellidoInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-apellido').innerHTML = "";
-        apellidoInput.classList.remove('is-invalid');
+    ////////////////SELECTOR/////////////////////
+    const selectEstado = document.createElement('select');
+    selectEstado.id = "estadoDeTarea" + eval(contador);
+    selectEstado.className = "botonSelecEstado";
+    selectEstado.classList.add(setColor());
+    //////////////////////////////////////////////////////
+    selectEstado.onchange = function () {
+        const idBoton = obtenerIdBoton(this);
+        const eliminar = 'estadoDeTarea';
+        const botonid = 'tarea' + idBoton.replace(eliminar, "");
+        console.log('cambiartema:', botonid);
+        cambiarTema(botonid);
     }
-}
-const validarEmail = () => {
-    const emailInput = document.getElementById('email');
-    if (emailInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-email').innerHTML = "El email es requerido";
-        emailInput.classList.add('is-invalid');
-        formularioCorrecto = false;
-    } else if (!esEmailValido(emailInput.value)) {
-        // error de minLength
-        document.getElementById('error-email').innerHTML = "Direccion de email incorrecta";
-        emailInput.classList.add('is-invalid');
-        formularioCorrecto = false;
-    } else {
-        document.getElementById('error-email').innerHTML = "";
-        emailInput.classList.remove('is-invalid');
-    }
-}
+    //////////////////////////////////////////////////////
+    //crea estado "pendiente" y lo asigna al selector
+    const opcionPendiente = document.createElement('option');
+    opcionPendiente.value = 'pendiente';
+    opcionPendiente.text = 'Pendiente';
 
-const validarMensaje = () => {
-    const mensajeInput = document.getElementById('mensaje');
-    if (mensajeInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-mensaje').innerHTML = "El mensaje es requerido";
-        mensajeInput.classList.add('is-invalid');
-    } else if (mensajeInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-mensaje').innerHTML = "El mensaje debe tener al menos 5 caracteres";
-        mensajeInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-mensaje').innerHTML = "";
-        mensajeInput.classList.remove('is-invalid');
-    }
-}
-
-//is-invalid
-const enviarFormulario = () => {
-    let formularioCorrecto = true;
+    //crea estado "en proceso" y lo asigna al selector
+    const opcionEnProceso = document.createElement('option');
+    opcionEnProceso.value = 'opcionEnProceso';
+    opcionEnProceso.text = 'En Proceso';
+    //crea estado "validar" y lo asigna al selector
+    const opcionValidar = document.createElement('option');
+    opcionValidar.value = 'validar';
+    opcionValidar.text = 'A Validar';
+    //crea estado "finalizado" y lo asigna al selector
+    const opcionFinalizado = document.createElement('option');
+    opcionFinalizado.value = 'finalizado';
+    opcionFinalizado.text = 'Finalizado';
 
 
-    const nombreInput = document.getElementById('nombre');
-    if (nombreInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-nombre').innerHTML = "El nombre es requerido";
-        nombreInput.classList.add('is-invalid');
-    } else if (nombreInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-nombre').innerHTML = "El nombre debe tener al menos 5 caracteres";
-        nombreInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-nombre').innerHTML = "";
-        nombreInput.classList.remove('is-invalid');
-    }
+    ////////////////////////////////////////////////////////////
+
+/**/ contenedor.appendChild(divtarea);
+/**/   divtarea.appendChild(divTitulo);
+/**/      divTitulo.appendChild(titulo);
+/**/   divtarea.appendChild(divCuerpo);
+/**/      divCuerpo.appendChild(textoTarea);
+/**/   divtarea.appendChild(divBotones);
+/**/         divBotones.appendChild(btnDel);
+/**/            btnDel.appendChild(trashIcono);
+/**/         divBotones.appendChild(divSelectorEstado)
+/**/            divSelectorEstado.appendChild(selectEstado);
+/**/                selectEstado.appendChild(opcionPendiente);
+/**/                selectEstado.appendChild(opcionEnProceso);
+/**/                selectEstado.appendChild(opcionValidar);
+/**/                selectEstado.appendChild(opcionFinalizado);
 
 
-
-    const apellidoInput = document.getElementById('apellido');
-    if (apellidoInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-apellido').innerHTML = "El apellido es requerido";
-        apellidoInput.classList.add('is-invalid');
-    } else if (apellidoInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-apellido').innerHTML = "El apellido debe tener al menos 5 caracteres";
-        apellidoInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-apellido').innerHTML = "";
-        apellidoInput.classList.remove('is-invalid');
-    }
-
-
-    const emailInput = document.getElementById('email');
-    if (emailInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-email').innerHTML = "El email es requerido";
-        emailInput.classList.add('is-invalid');
-        formularioCorrecto = false;
-    } else if (!esEmailValido(emailInput.value)) {
-        // error de minLength
-        document.getElementById('error-email').innerHTML = "Direccion de email incorrecta";
-        emailInput.classList.add('is-invalid');
-        formularioCorrecto = false;
-    } else {
-        document.getElementById('error-email').innerHTML = "";
-        emailInput.classList.remove('is-invalid');
-
-    }
-    const mensajeInput = document.getElementById('mensaje');
-    if (mensajeInput.value.trim() == "") {
-        // error de required
-        document.getElementById('error-mensaje').innerHTML = "El mensaje es requerido";
-        mensajeInput.classList.add('is-invalid');
-    } else if (mensajeInput.value.trim().length < 5) {
-        // error de minLength
-        document.getElementById('error-mensaje').innerHTML = "El mensaje debe tener al menos 5 caracteres";
-        mensajeInput.classList.add('is-invalid');
-    } else {
-        document.getElementById('error-mensaje').innerHTML = "";
-        mensajeInput.classList.remove('is-invalid');
-    }
-
-
-
-    const telefono = document.getElementById("imputCell");
-    const ciudad = document.getElementById("inputCiudad");
-    const zip = document.getElementById("inputZip")
-    if (formularioCorrecto) {
-
-        console.log("Nombre:", nombreInput.value);
-        console.log("Nombre:", apellidoInput.value);
-        console.log("Email:", emailInput.value);
-        console.log("mensaje:", mensajeInput.value);
-        console.log("telefono:", telefono.value);
-        console.log("ciudad:", ciudad.value);
-        console.log("zip:", zip.value);
-
-    } else {
-        console.log("Formulario incorrecto")
-    }
-
+    ////////////////////////
+    //prueba para editar
+    /* textoTarea.innerText = 'hola esto es una tarea '
+    titulo.innerText = 'Este es el titulo de una tarea';
+ */
+    /////////////////////////////
 
 }
 
-const inicializarJs = () => {
-    const boton = document.getElementById("enviar-btn");
-    boton.addEventListener('click', function (e) {
-        enviarFormulario();
-    });
-
-    document.getElementById('nombre').addEventListener('blur', function (e) {
-        validarNombre();
-    })
-    document.getElementById('apellido').addEventListener('blur', function (e) {
-        validarApellido();
-    })
-    document.getElementById('email').addEventListener('blur', function (e) {
-        validarEmail();
-    })
-    document.getElementById('mensaje').addEventListener('blur', function (e) {
-        validarMensaje();
-    })
-
+///////////////////////
+function obtenerIdBoton(boton) {
+    idBoton = boton.id;
+    return idBoton;
 }
 
-window.addEventListener('load', inicializarJs);
+function eliminarTarea(idBoton) {
+    const divContenedor = document.getElementById('contenedor');
+    const tarea = document.getElementById('tarea' + idBoton);
+    console.log('tarea eliminar:', tarea)
+    divContenedor.removeChild(tarea);
+}
+
+function setColor() {
+    const color = document.getElementById('idColor').value;
+    //console.log('el color seleccionado es ' + color);
+    return color;
+}
+
+
+function cambiarTema(boton) {
+    //console.log('id manejado:', boton);
+
+    const tarea = document.getElementById(boton);
+
+    let idboton = boton;
+    const eliminar = 'tarea';
+    const idSelector = idboton.replace(eliminar, 'estadoDeTarea');
+    const estado = document.getElementById(idSelector).value;
+
+    
+        if (estado === "finalizado") {
+            tarea.classList.add('finalizado');
+            console.log('finalizado');
+            tarea.classList.remove('inProgress');
+            tarea.classList.remove('aValidar');
+            const palabras = tarea.querySelectorAll('.textoTarea');
+            palabras.forEach(palabra => {
+                palabra.style.textDecoration = 'line-through';
+            });
+        } else if (estado === "opcionEnProceso") { 
+            console.log('en proceso');
+            tarea.classList.add('enProceso');
+            tarea.classList.remove('aValidar');
+            tarea.classList.remove('finalizado');
+            const palabras = tarea.querySelectorAll('.textoTarea');
+            palabras.forEach(palabra => {
+                palabra.style.textDecoration = 'none';
+            });
+        }else if (estado === "validar") { 
+            console.log('en proceso');
+            tarea.classList.add('aValidar');
+            tarea.classList.remove('enProceso');
+            tarea.classList.remove('finalizado');
+            const palabras = tarea.querySelectorAll('.textoTarea');
+            palabras.forEach(palabra => {
+                palabra.style.textDecoration = 'none';
+            });
+        } else {
+            console.log('pendiente');
+            tarea.classList.remove('finalizado');
+            tarea.classList.remove('enProceso');
+            tarea.classList.remove('aValidar');
+            const palabras = tarea.querySelectorAll('.textoTarea');
+            palabras.forEach(palabra => {
+                palabra.style.textDecoration = 'none';
+            });
+        }
+    
+}
+
