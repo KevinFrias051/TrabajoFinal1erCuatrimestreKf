@@ -1,7 +1,5 @@
-//crea un contador para crear id's personalizadors
+//contador para id's var
 let contador = 0;
-
-
 
 const btnAgregarTarea = document.getElementById("btnAgregarTarea");
 btnAgregarTarea.addEventListener('click', function (e) {
@@ -15,28 +13,28 @@ function agregarTarea() {
     const agregarTitulo = document.getElementById("tituloTarea");
     const agegarCuerpo = document.getElementById("cuerpoTarea");
 
-    //crea el div tarea
+    /* crea el div tarea */
     const divtarea = document.createElement("div");
     divtarea.id = 'tarea' + eval(contador);
     divtarea.className = 'tarea';
-    divtarea.classList.add(setColor())
-    ////
-    //crea el div titulo
+    divtarea.classList.add(setColor());
+
+    /* crea el div titulo */
     const divTitulo = document.createElement('div');
-    divTitulo.id = "idDivTitulo";// + eval(contador);
+    divTitulo.id = "idDivTitulo";
     divTitulo.classList = 'divTitulo';
     divTitulo.classList.add(setColor());
+
     /* crea y asigna el titulo de la tares*/
     const titulo = document.createElement("p");
-    titulo.id = "idTitulo";// + eval(contador);
+    titulo.id = "idTitulo";
     titulo.classList = "tituloTarea";
     titulo.classList.add(setColor());
     titulo.innerText = agregarTitulo.value;
 
-    ////
-    //crea el div del cuerpo
+    /* crea el div del cuerpo */
     const divCuerpo = document.createElement("div");
-    divCuerpo.id = "divCuerpo";// + eval(contador);
+    divCuerpo.id = "divCuerpo";
     divCuerpo.classList = "divCuerpo";
 
     divCuerpo.classList.add(setColor());
@@ -46,24 +44,23 @@ function agregarTarea() {
     textoTarea.classList = 'textoTarea';
     textoTarea.classList.add(setColor());
     textoTarea.innerText = agegarCuerpo.value;
-    //div de los botones
+
+    /* crea div de los botones */
     const divBotones = document.createElement("div");
-    //divBotones.id = "divBotones" + eval(contador);
     divBotones.className = 'divBotones';
     divBotones.classList.add(setColor());
-    //
+
+
     /* creo el boton para eliminar */
     var btnDel = document.createElement('button');
     const trashIcono = document.createElement("i");//crea el icono   
     trashIcono.className = "fa-solid fa-trash fa-lg";//tipo de icono
     trashIcono.style.color = '#4d4d4d';
-
     btnDel.id = eval(contador);
     console.log('btnDel.id:' + eval(contador))
     btnDel.type = 'button';
     btnDel.className = "botonEliminar";
     btnDel.classList.add(setColor());
-    //btnDel.textContent = 'Eliminar Tarea';
     btnDel.onclick = function () {
         const idBoton = obtenerIdBoton(this);
         eliminarTarea(idBoton);
@@ -80,7 +77,6 @@ function agregarTarea() {
     selectEstado.id = "estadoDeTarea" + eval(contador);
     selectEstado.className = "botonSelecEstado";
     selectEstado.classList.add(setColor());
-    //////////////////////////////////////////////////////
     selectEstado.onchange = function () {
         const idBoton = obtenerIdBoton(this);
         const eliminar = 'estadoDeTarea';
@@ -88,13 +84,19 @@ function agregarTarea() {
         console.log('cambiartema:', botonid);
         cambiarTema(botonid);
     }
-    //////////////////////////////////////////////////////
+
     //crea estado "pendiente" y lo asigna al selector
     const opcionPendiente = document.createElement('option');
     opcionPendiente.value = 'pendiente';
     opcionPendiente.text = 'Pendiente';
-
-
+    //crea estado "en proceso" y lo asigna al selector
+    const opcionEnProceso = document.createElement('option');
+    opcionEnProceso.value = 'opcionEnProceso';
+    opcionEnProceso.text = 'En Proceso';
+    //crea estado "validar" y lo asigna al selector
+    const opcionValidar = document.createElement('option');
+    opcionValidar.value = 'validar';
+    opcionValidar.text = 'A Validar';
     //crea estado "finalizado" y lo asigna al selector
     const opcionFinalizado = document.createElement('option');
     opcionFinalizado.value = 'finalizado';
@@ -114,7 +116,9 @@ function agregarTarea() {
 /**/         divBotones.appendChild(divSelectorEstado)
 /**/            divSelectorEstado.appendChild(selectEstado);
 /**/                selectEstado.appendChild(opcionPendiente);
-/**/                    selectEstado.appendChild(opcionFinalizado);
+/**/                selectEstado.appendChild(opcionEnProceso);
+/**/                selectEstado.appendChild(opcionValidar);
+/**/                selectEstado.appendChild(opcionFinalizado);
 
 
     ////////////////////////
@@ -147,7 +151,7 @@ function setColor() {
 
 
 function cambiarTema(boton) {
-    console.log('id manejado:', boton);
+    //console.log('id manejado:', boton);
 
     const tarea = document.getElementById(boton);
 
@@ -155,19 +159,45 @@ function cambiarTema(boton) {
     const eliminar = 'tarea';
     const idSelector = idboton.replace(eliminar, 'estadoDeTarea');
     const estado = document.getElementById(idSelector).value;
+
+
     if (estado === "finalizado") {
         tarea.classList.add('finalizado');
         console.log('finalizado');
+        tarea.classList.remove('inProgress');
+        tarea.classList.remove('aValidar');
         const palabras = tarea.querySelectorAll('.textoTarea');
         palabras.forEach(palabra => {
             palabra.style.textDecoration = 'line-through';
         });
-    } else {
-        console.log('pendiente');
+    } else if (estado === "opcionEnProceso") {
+        console.log('en proceso');
+        tarea.classList.add('enProceso');
+        tarea.classList.remove('aValidar');
         tarea.classList.remove('finalizado');
         const palabras = tarea.querySelectorAll('.textoTarea');
         palabras.forEach(palabra => {
             palabra.style.textDecoration = 'none';
         });
+    } else if (estado === "validar") {
+        console.log('en proceso');
+        tarea.classList.add('aValidar');
+        tarea.classList.remove('enProceso');
+        tarea.classList.remove('finalizado');
+        const palabras = tarea.querySelectorAll('.textoTarea');
+        palabras.forEach(palabra => {
+            palabra.style.textDecoration = 'none';
+        });
+    } else {
+        console.log('pendiente');
+        tarea.classList.remove('finalizado');
+        tarea.classList.remove('enProceso');
+        tarea.classList.remove('aValidar');
+        const palabras = tarea.querySelectorAll('.textoTarea');
+        palabras.forEach(palabra => {
+            palabra.style.textDecoration = 'none';
+        });
     }
+
 }
+

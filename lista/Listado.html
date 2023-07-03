@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabajo Final Primer Cuatrimestre</title>
+    <title>Trabajo Final Primer Cuatrimestre Parte 2</title>
 
     <link rel="stylesheet" href="./Listado.css">
 </head>
 
 <body>
-    <div id="menu" class="contenedorMenu tarea lgray">
-
-        <div id="idDivTitulo" class="divTitulo lgray">
-            <p id="idTitulo" class="tituloTarea lgray"><textarea id="tituloTarea" style="width: 95%; height: 100%;" class="textoMenu lgray" placeholder="Titulo de la tarea"></textarea>
-            </p>
+    <div class="mainContainer">
+        <div class="cabecera">
+            <img src="imagenes/cabecera.jpg" alt="" srcset="">
         </div>
-        <div id="divCuerpo" class="divCuerpo lgray">
-            <textarea id="cuerpoTarea"style="width: 95%; min-height: 240px;" class="lgray" placeholder="Contenido de la tarea"></textarea>
-        </div>
-        
-        <div class="divBotones lgray">
-            <div id="selectColor" class="agregar lgray ">
-                <select id="idColor" onchange="setColor()" class="lgray btnMenu"><!-- aca editar el contenedor del boton -->
-                    <option value="red"selected>red</option>
-                    <option value="green">green</option>
-                    <option value="blue">blue</option>
-                    <option value="yellow">yellow</option>
-                    <option value="pink">pink</option>
-                </select>
+        <div id="menu" class="contenedorMenu tarea lgray">
+            <div id="idDivTitulo" class="divTitulo lgray">
+                <p id="idTitulo" class="tituloTarea lgray"><textarea id="tituloTarea" style="width: 95%; height: 100%;"
+                        class="textoMenu lgray" placeholder="Titulo de la tarea"></textarea>
+                </p>
             </div>
-            <div class="botonAgregar lgray">
-                <!-- aca editar el contenedor del boton -->
-                <button class="agregar lgray btnMenu" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
+            <div id="divCuerpo" class="divCuerpo lgray">
+                <textarea id="cuerpoTarea" style="width: 95%; min-height: 240px;" class="lgray"
+                    placeholder="Contenido de la tarea"></textarea>
             </div>
+            <div class="divBotones lgray">
+                <div id="selectColor" class="agregar lgray ">
+                    <select id="idColor" onchange="setColor()" class="lgray btnMenu">
+                        <option value="red" selected>color 1</option>
+                        <option value="green">color 2</option>
+                        <option value="blue">color 3</option>
+                        <option value="yellow">color 4</option>
+                        <option value="pink">color 5</option>
+                    </select>
+                </div>
+                <div class="botonAgregar lgray">
+                    <button class="agregar lgray btnMenu" id="btnAgregarTarea" onclick="agregarTarea()">Agregar</button>
+                </div>
 
+            </div>
         </div>
+        <!--Aca comienza el contenedor de las tareas-->
+        <div class="divContenedor" id="contenedor"></div>
+        <!--Aca termina el contenedor de las tareas-->
+
     </div>
-
-    <div class="divContenedor" id="contenedor"></div>
-    <!------------------- Aca termina el contenedor de las tareas------------------------------ -->
     <script src="https://kit.fontawesome.com/38f35d14bb.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./Listado.js"></script>
+    <script type="text/javascript" src="./listado2.js"></script>
 </body>
 
 </html>

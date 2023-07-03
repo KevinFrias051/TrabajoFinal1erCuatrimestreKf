@@ -1,9 +1,11 @@
 body {
-    background-color:#f1f1e9;
-    margin: auto;
-    width: 1000px;
+    display: flex;
+    background-color: #f1f1e9;
+    margin: 0 auto;
+    width: auto;
     border: 1px solid black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 .hiperVinculo {
@@ -11,12 +13,13 @@ body {
     color: black;
     font-weight: bold;
 }
+
 .hiperVinculo:hover {
     text-decoration: none;
-    color: red;    
+    color: red;
 }
 
-.carousel-inner h5{
+.carousel-inner h5 {
     font-size: 30px;
     color: red;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
@@ -29,7 +32,9 @@ body {
     color: white;
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
-.quienesSomos, .contacto{
+
+.quienesSomos,
+.contacto {
     margin-top: 30px;
     margin-bottom: 30px;
     padding: 30px;
@@ -43,7 +48,8 @@ body {
     margin-bottom: 10px;
 }
 
-.formImput, .formImput:focus{
-    background-color:#f1f1e9;
-    
+.formImput,
+.formImput:focus {
+    background-color: #f1f1e9;
+
 }
